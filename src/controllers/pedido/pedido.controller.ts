@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post } from '@nestjs/common';
-import { PedidoService } from '../services/pedido.service';
-import { PedidoDTO } from 'src/dtos/pedidoDTO';
+import { Body, Controller, Delete, Get, HttpCode, Inject, Param, Patch, Post } from '@nestjs/common';
+import { PedidoService } from '../../services/pedido/pedido.service';
+import { PedidoDTO } from 'src/dtos/pedido.dto';
 
 @Controller("pedidos")
 export class PedidoController {
-  constructor(private readonly appService: PedidoService) {}
+  @Inject(PedidoService)
+  service: PedidoService;
 
   @Get()
   findAll(): PedidoDTO[] {

@@ -1,4 +1,4 @@
-import { ProdutoDTO } from "./produtoDTO";
+import { ProdutoDTO } from "./produto.dto";
 
 export class PedidoDTO {
     id!: string;
