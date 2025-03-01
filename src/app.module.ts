@@ -6,5 +6,6 @@ import { PedidoService } from './services/pedido/pedido.service';
   imports: [],
   controllers: [PedidoController],
   providers: [PedidoService],
+  exports: []
 })
 export class AppModule {}

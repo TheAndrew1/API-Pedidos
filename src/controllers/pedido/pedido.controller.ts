@@ -5,36 +5,31 @@ import { PedidoDTO } from 'src/dtos/pedido.dto';
 @Controller("pedidos")
 export class PedidoController {
   @Inject(PedidoService)
-  service: PedidoService;
+  private service: PedidoService;
 
   @Get()
   findAll(): PedidoDTO[] {
-    return [new PedidoDTO()];
+    return this.service.findAll();
   }
 
   @Get(':id')
   findById(@Param("id") id: string): PedidoDTO {
-    console.log(id);
-    return new PedidoDTO();
+    return this.service.findById(id);
   }
 
   @Post()
   create(@Body() pedido: PedidoDTO) {
-    return pedido;
+    return this.service.create(pedido);
   }
 
   @Patch(':id')
   updateStatus(@Param("id") id: string, @Body("status") status: string): any {
-    console.log(id);
-    return {
-      message: "Pedido atualizado com sucesso",
-      status: status
-    };
+    return this.service.updateStatus(id, status);
   }
 
   @Delete(':id')
   @HttpCode(204)
   delete(@Param("id") id: string): void {
-    console.log(id);
+    this.service.delete(id);
   }
 }
