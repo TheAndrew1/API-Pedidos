@@ -1,10 +1,10 @@
-import { produtoDTO } from "./produtoDTO";
+import { ProdutoDTO } from "./produtoDTO";
 
-export class pedidoDTO {
+export class PedidoDTO {
     id!: string;
     cliente!: string;
     email!: string;
-    itens!: produtoDTO[];
+    itens!: ProdutoDTO[];
     total!: number;
     status!: string;
     data_criacao!: Date;
