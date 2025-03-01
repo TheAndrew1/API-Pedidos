@@ -6,14 +6,13 @@ export class PedidoController {
   constructor(private readonly appService: PedidoService) {}
 
   @Get()
-  @HttpCode(202)
-  getHello(): string {
+  findAll(): string {
     return this.appService.getHello();
   }
 
-  @Get(':teste')
-  receiveMessage(@Param("teste") mensagem: string): string {
-    console.log(mensagem);
-    return `Mensagem enviada ${mensagem}`;
+  @Get(':id')
+  findById(@Param("id") id: string): string {
+    console.log(id);
+    return `Mensagem enviada ${id}`;
   }
 }

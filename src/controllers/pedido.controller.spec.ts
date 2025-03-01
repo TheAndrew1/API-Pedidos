@@ -16,7 +16,7 @@ describe('PedidoController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(pedidoController.getHello()).toBe('Hello World!');
+      expect(pedidoController.findAll()).toBe('Hello World!');
     });
   });
 });
