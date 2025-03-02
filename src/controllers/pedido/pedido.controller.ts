@@ -5,31 +5,31 @@ import { PedidoDTO } from 'src/dtos/pedido.dto';
 @Controller("pedidos")
 export class PedidoController {
   @Inject(PedidoService)
-  private service: PedidoService;
+  private pedidoService: PedidoService;
 
   @Get()
-  findAll(): PedidoDTO[] {
-    return this.service.findAll();
+  async findAll(): Promise<PedidoDTO[]> {
+    return this.pedidoService.findAll();
   }
 
-  @Get(':id')
-  findById(@Param("id") id: string): PedidoDTO {
-    return this.service.findById(id);
+  @Get(":id")
+  async findById(@Param("id") id: string):  Promise<PedidoDTO> {
+    return this.pedidoService.findById(id);
   }
 
   @Post()
-  create(@Body() pedido: PedidoDTO) {
-    return this.service.create(pedido);
+  async create(@Body() pedido: PedidoDTO): Promise<any> {
+    return this.pedidoService.create(pedido);
   }
 
-  @Patch(':id')
-  updateStatus(@Param("id") id: string, @Body("status") status: string): any {
-    return this.service.updateStatus(id, status);
+  @Patch(":id")
+  async updateStatus(@Param("id") id: string, @Body("status") status: string): Promise<any> {
+    return this.pedidoService.updateStatus(id, status);
   }
 
-  @Delete(':id')
+  @Delete(":id")
   @HttpCode(204)
-  delete(@Param("id") id: string): void {
-    this.service.delete(id);
+  async delete(@Param("id") id: string): Promise<void> {
+    return this.pedidoService.delete(id);
   }
 }

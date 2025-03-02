@@ -13,7 +13,7 @@ export class Pedido {
     @Column()
     email?: string;
 
-    @OneToMany(() => Produto, (produto) => produto.pedido, { cascade: true })
+    @OneToMany(() => Produto, (produto) => produto.pedido, { cascade: true, onDelete: 'CASCADE' })
     itens?: Produto[];
 
     @Column()
