@@ -9,8 +9,12 @@ import { PedidoMapper } from './mappers/pedido/pedido.mapper';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'api-pedidos.db',
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'api_pedidos',
       autoLoadEntities: true,
       synchronize: true,
     }),
