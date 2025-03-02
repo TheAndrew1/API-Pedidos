@@ -3,12 +3,15 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PedidoDTO } from 'src/dtos/pedido.dto';
 import { Pedido } from 'src/entities/pedido';
+import { Produto } from 'src/entities/produto';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class PedidoService {
     @InjectRepository(Pedido)
     private pedidoRepository: Repository<Pedido>;
+    @InjectRepository(Produto)
+    private produtoRepository: Repository<Produto>;
     @Inject()
     private pedidoMapper: PedidoMapper;
 
@@ -49,6 +52,9 @@ export class PedidoService {
         let pedido = await this.pedidoRepository.findOne({where: { id: id }, relations: { itens: true }})
         if(!pedido) {
             throw new NotFoundException("Pedido não encontrado");
+        }
+        if (pedido.itens && pedido.itens.length > 0) {
+            await this.produtoRepository.remove(pedido.itens);
         }
         await this.pedidoRepository.remove(pedido);
     }
